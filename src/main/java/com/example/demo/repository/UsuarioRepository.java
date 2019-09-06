@@ -29,32 +29,31 @@ public class UsuarioRepository {
     usuarios.add(usr5);
   }
 
-  public boolean crearUsuario(Usuario usuario) {
+  public String crearUsuario(Usuario usuario) {
     usuarios.add(usuario);
-    return true;
+    return "Se ha creado el usuario con exito";
   }
   
-  public boolean actualizarUsuario(String nombre,String nombreNuevo,int edad) {
-    Usuario usuario = buscarUsuario(nombre);
-    for (Usuario user : usuarios) {
-      if (usuario.getNombre().equals(nombre)) {
-        user.setEdad(edad);
-        user.setNombre(nombreNuevo);
-        return true;
+  public String actualizarUsuario(Usuario usuario,String nombreNuevo,int edad) {
+    for(Usuario usu : usuarios) {
+      if(usu.getNombre().equals(usuario.getNombre())) {
+        usu.setEdad(edad);
+        usu.setNombre(nombreNuevo);
+        return "Se actualizo con exito";
       }else {
-        return false;
-      }
+        return "No se pudo actualziar";
         
+      }
     }
-    return false;
+    return "No hay usuarios";
   }
 
-  public boolean eliminarUsuario(Usuario usuario) {
+  public String eliminarUsuario(Usuario usuario) {
     if (usuario != null) {
       usuarios.remove(usuario);
-      return true;
+      return "Se elimino el usuario con extio";
     }
-    return false;
+    return "no se encontro un usuario para eliminar";
   }
 
   public List<Usuario> listarUsuarios() {

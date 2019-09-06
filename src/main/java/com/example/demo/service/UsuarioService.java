@@ -14,16 +14,17 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	public boolean crearUsuario(String nombre, String edad) {
+	public String crearUsuario(String nombre, String edad) {
 		Usuario usuario = new Usuario(nombre, Integer.parseInt(edad));
 		return usuarioRepository.crearUsuario(usuario);
 	}
 	
-	public boolean actualizarUsuario(String nombre,String nombreNuevo, String edad) {
-    return usuarioRepository.actualizarUsuario(nombre,nombreNuevo,Integer.parseInt(edad));
+	public String actualizarUsuario(String nombre,String nombreNuevo, String edad) {
+	  Usuario usuario = usuarioRepository.buscarUsuario(nombre);
+    return usuarioRepository.actualizarUsuario(usuario,nombreNuevo , Integer.parseInt(edad));
   }
 	
-	public boolean eliminarUsuario(String nombreUsuario) {
+	public String eliminarUsuario(String nombreUsuario) {
 		Usuario usuario = usuarioRepository.buscarUsuario(nombreUsuario);
 		return usuarioRepository.eliminarUsuario(usuario);
 	}

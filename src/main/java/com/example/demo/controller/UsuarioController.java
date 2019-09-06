@@ -22,7 +22,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@RequestMapping(path = "/crear/{nombre}/{edad}", method = RequestMethod.POST)
-	boolean crearUsuario(
+	String crearUsuario(
 			@PathVariable("nombre") String nombreUsuario, 
 			@PathVariable("edad") String edad) {
 
@@ -30,7 +30,7 @@ public class UsuarioController {
 	}
 	
 	 @RequestMapping(path = "/actualizar/{nombre}/{nombreNuevo}/{edad}", method = RequestMethod.PUT)
-	  boolean actualizarUsuario(
+	  String actualizarUsuario(
 	      @PathVariable("nombre") String nombreUsuario,
 	      @PathVariable("nombreNuevo") String nombreNuevo,
 	      @PathVariable("edad") String edad) {
@@ -39,7 +39,7 @@ public class UsuarioController {
 	  }
 
 	@RequestMapping(path = "/eliminar/{nombre}", method = RequestMethod.DELETE)
-	boolean eliminarUsuario(@PathVariable("nombre") String usuario) {
+	String eliminarUsuario(@PathVariable("nombre") String usuario) {
 		return usuarioService.eliminarUsuario(usuario);
 	}
 
