@@ -34,18 +34,16 @@ public class UsuarioRepository {
     return "Se ha creado el usuario con exito";
   }
   
-  public String actualizarUsuario(Usuario usuario,String nombreNuevo,int edad) {
-    for(Usuario usu : usuarios) {
-      if(usu.getNombre().equals(usuario.getNombre())) {
-        usu.setEdad(edad);
-        usu.setNombre(nombreNuevo);
-        return "Se actualizo con exito";
-      }else {
-        return "No se pudo actualziar";
-        
-      }
+  public String actualizarUsuario(String nombre,String nombreNuevo,int edad) {
+    Usuario usu = buscarUsuario(nombre);
+    
+    if( usu != null) {
+      usu.setEdad(edad);
+      usu.setNombre(nombreNuevo);
+      return "Actualizado con exito";
+    }else {
+      return "No se pudo actualizar";
     }
-    return "No hay usuarios";
   }
 
   public String eliminarUsuario(Usuario usuario) {
@@ -55,6 +53,7 @@ public class UsuarioRepository {
     }
     return "no se encontro un usuario para eliminar";
   }
+  
 
   public List<Usuario> listarUsuarios() {
     return this.usuarios;

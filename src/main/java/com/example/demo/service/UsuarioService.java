@@ -15,20 +15,30 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	public String crearUsuario(String nombre, String edad) {
-		Usuario usuario = new Usuario(nombre, Integer.parseInt(edad));
-		return usuarioRepository.crearUsuario(usuario);
+	  if (nombre.equals("") || edad.equals("")) {
+	    return "Debe ingresar un nombre de usuario y contraseña";
+	  }else {
+	    Usuario usuario = new Usuario(nombre, Integer.parseInt(edad));
+	    return usuarioRepository.crearUsuario(usuario);
+	  }
 	}
 	
 	public String actualizarUsuario(String nombre,String nombreNuevo, String edad) {
-	  Usuario usuario = usuarioRepository.buscarUsuario(nombre);
-    return usuarioRepository.actualizarUsuario(usuario,nombreNuevo , Integer.parseInt(edad));
+    return usuarioRepository.actualizarUsuario(nombre,nombreNuevo , Integer.parseInt(edad));
   }
 	
 	public String eliminarUsuario(String nombreUsuario) {
+	  if (nombreUsuario.equals("")) {
+	    return "Debe ingresar un nombre para eliminar";
+	  }else {
 		Usuario usuario = usuarioRepository.buscarUsuario(nombreUsuario);
 		return usuarioRepository.eliminarUsuario(usuario);
+	  }
 	}
 	
+	public Usuario buscarUsuario(String nombreUsuario) {
+    return usuarioRepository.buscarUsuario(nombreUsuario);
+  }
 	public List<Usuario> listarUsuarios(){
 		return usuarioRepository.listarUsuarios();
 	}

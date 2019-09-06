@@ -42,6 +42,10 @@ public class UsuarioController {
 	String eliminarUsuario(@PathVariable("nombre") String usuario) {
 		return usuarioService.eliminarUsuario(usuario);
 	}
+	@RequestMapping(path = "/buscar/{nombre}", method = RequestMethod.GET)
+  Usuario buscarUsuario(@PathVariable("nombre") String usuario) {
+    return usuarioService.buscarUsuario(usuario);
+  }
 
 	@RequestMapping(path = "/listar", 
 			method = RequestMethod.GET, 
